@@ -1,0 +1,1261 @@
+/* ==========================================================================
+   suyunticloud.top - Modern Bauhaus & Swiss Neo-Brutalist Architecture
+   Design Language: Cantilever Steel Framing, Hard-Edge Shadows, Sharp 90° Geometry
+   ========================================================================== */
+
+:root {
+  --bg-slate: #0d1117;
+  --bg-concrete: #161b22;
+  --bg-modular: #1c2129;
+  --bg-modular-hover: #242c37;
+  --bg-elevated: #2a3342;
+
+  --bauhaus-blue: #2563eb;
+  --bauhaus-blue-light: #3b82f6;
+  --signal-crimson: #ff334b;
+  --industrial-amber: #f59e0b;
+
+  --text-pure: #ffffff;
+  --text-drafting: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-monolith: #64748b;
+
+  --border-structural: 2px solid #2d3748;
+  --border-blue: 2px solid #2563eb;
+  --border-crimson: 2px solid #ff334b;
+  --border-hairline: 1px solid rgba(255, 255, 255, 0.1);
+
+  --shadow-hard-blue: 6px 6px 0px #2563eb;
+  --shadow-hard-crimson: 6px 6px 0px #ff334b;
+  --shadow-large-blue: 10px 10px 0px #2563eb;
+  --shadow-large-crimson: 10px 10px 0px #ff334b;
+
+  --font-grotesque: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-grotesque);
+  background-color: var(--bg-slate);
+  color: var(--text-drafting);
+  line-height: 1.55;
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--bg-slate);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================================================
+   Architectural Masthead & Navigation
+   ========================================================================== */
+
+.bauhaus-masthead, .aero-masthead, .cockpit-hud {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid #2d3748;
+}
+
+.masthead-inner, .hud-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.bauhaus-logo-svg, .aero-logo-svg {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.bauhaus-nav-menu, .aero-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bauhaus-nav-menu a, .aero-nav-menu a {
+  color: var(--text-drafting);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.bauhaus-nav-menu a:hover, .aero-nav-menu a:hover,
+.bauhaus-nav-menu a.active, .aero-nav-menu a.active {
+  background: var(--bg-modular);
+  border: 1px solid var(--bauhaus-blue);
+  color: var(--text-pure);
+  box-shadow: 3px 3px 0px var(--bauhaus-blue);
+}
+
+.header-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 32px;
+  background: #161b22;
+  border: 2px solid var(--bauhaus-blue);
+  border-radius: 0;
+  padding: 6px 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0px var(--bauhaus-blue);
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-btn .bar {
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-btn.active {
+  background: var(--bauhaus-blue);
+  box-shadow: 2px 2px 0px var(--signal-crimson);
+}
+
+.mobile-menu-btn.active .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-menu-btn.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav-drawer {
+  display: none;
+  flex-direction: column;
+  padding: 14px 18px 20px;
+  background: #0d1117;
+  border-bottom: 3px solid var(--bauhaus-blue);
+  gap: 8px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 99;
+}
+
+.mobile-nav-drawer.open {
+  display: flex;
+  animation: bauhausDrawerSlide 0.2s ease-out;
+}
+
+@keyframes bauhausDrawerSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.drawer-link {
+  color: var(--text-drafting);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border-radius: 0;
+  text-decoration: none;
+  background: #161b22;
+  border: 1px solid #2d3748;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.drawer-link:hover, .drawer-link.active {
+  background: var(--bauhaus-blue);
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 3px 3px 0px #ffffff;
+}
+
+.drawer-link.drawer-hub-link {
+  color: #ffffff;
+  border-left: 4px solid var(--signal-crimson);
+}
+
+.drawer-cta-wrap {
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 2px solid #2d3748;
+}
+
+.drawer-cta-wrap .btn-bauhaus-primary,
+.drawer-cta-wrap .btn-aero-primary {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  padding: 11px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.btn-bauhaus-primary, .btn-aero-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: var(--signal-crimson);
+  color: var(--text-pure);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+  box-shadow: 4px 4px 0px #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-bauhaus-primary:hover, .btn-aero-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--bauhaus-blue);
+  background: #ff1f38;
+}
+
+/* ==========================================================================
+   Cantilever Split Hero (55% / 45% Structural Engineering)
+   ========================================================================== */
+
+.bauhaus-hero {
+  padding: 80px 0 100px;
+  border-bottom: 3px solid #222936;
+  position: relative;
+}
+
+.bauhaus-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.arch-spec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--bg-concrete);
+  border-left: 4px solid var(--bauhaus-blue);
+  border-top: 1px solid #2d3748;
+  border-right: 1px solid #2d3748;
+  border-bottom: 1px solid #2d3748;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-drafting);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.spec-accent-box {
+  width: 8px;
+  height: 8px;
+  background: var(--signal-crimson);
+}
+
+.hero-title {
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--text-pure);
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+
+.bauhaus-highlight {
+  display: inline-block;
+  background: var(--bauhaus-blue);
+  color: #ffffff;
+  padding: 2px 14px;
+  box-shadow: 5px 5px 0px var(--signal-crimson);
+  margin-top: 6px;
+}
+
+.hero-desc {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+  max-width: 540px;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Secondary Authority Link - strictly dofollow, no rel="nofollow" */
+.btn-bauhaus-recommend, .btn-aero-recommend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: var(--bg-modular);
+  border: 2px solid #2d3748;
+  color: var(--text-drafting);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 4px 4px 0px #2d3748;
+  transition: all 0.2s ease;
+}
+
+.btn-bauhaus-recommend:hover, .btn-aero-recommend:hover {
+  transform: translate(-2px, -2px);
+  border-color: var(--bauhaus-blue);
+  box-shadow: 6px 6px 0px var(--bauhaus-blue);
+  color: #ffffff;
+}
+
+/* Structural Isometric Module Diagram Card */
+.cantilever-diagram-card {
+  background: var(--bg-concrete);
+  border: 2px solid #2d3748;
+  box-shadow: var(--shadow-large-crimson);
+  padding: 30px;
+  position: relative;
+}
+
+.diagram-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 2px solid #222936;
+  margin-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.diagram-tag-blue {
+  color: var(--bauhaus-blue-light);
+  font-weight: 700;
+}
+
+.load-structural-visual {
+  height: 160px;
+  background: var(--bg-slate);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.load-beam-h {
+  width: 80%;
+  height: 28px;
+  background: var(--bauhaus-blue);
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 4px 4px 0px var(--signal-crimson);
+}
+
+.arch-data-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.arch-data-module {
+  background: var(--bg-modular);
+  border: 1px solid #2d3748;
+  padding: 14px;
+}
+
+.module-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--signal-crimson);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.module-val {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--text-pure);
+  font-variant-numeric: tabular-nums;
+}
+
+.module-unit {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bauhaus-blue-light);
+  margin-left: 2px;
+}
+
+/* ==========================================================================
+   Section Headers & Architectural Structural Beams
+   ========================================================================== */
+
+.bauhaus-section {
+  padding: 90px 0;
+  border-bottom: 3px solid #222936;
+  position: relative;
+}
+
+.section-head {
+  max-width: 780px;
+  margin-bottom: 50px;
+}
+
+.section-spec-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--bauhaus-blue-light);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--text-pure);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Core Advantages (4 Columns Architectural Cantilever Blocks)
+   ========================================================================== */
+
+.arch-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.arch-module-card {
+  background: var(--bg-concrete);
+  border: 2px solid #2d3748;
+  box-shadow: var(--shadow-hard-blue);
+  padding: 30px 24px;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.arch-module-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-hard-crimson);
+  border-color: #ffffff;
+  background: var(--bg-modular);
+}
+
+.card-mod-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--bauhaus-blue-light);
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+
+.arch-icon-box {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-slate);
+  border: 2px solid #2d3748;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--signal-crimson);
+}
+
+.arch-icon-box svg {
+  width: 24px;
+  height: 24px;
+}
+
+.arch-card-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-pure);
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.arch-card-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   Streaming & AI Support Matrix (3 Modular Structural Pillars)
+   ========================================================================== */
+
+.arch-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.arch-matrix-card {
+  background: var(--bg-concrete);
+  border: 2px solid #2d3748;
+  box-shadow: 6px 6px 0px #1e293b;
+  padding: 32px 28px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.arch-matrix-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-hard-blue);
+  border-color: var(--bauhaus-blue);
+}
+
+.matrix-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.matrix-icon-block {
+  width: 42px;
+  height: 42px;
+  background: var(--bauhaus-blue);
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.matrix-icon-block svg {
+  width: 22px;
+  height: 22px;
+}
+
+.matrix-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-pure);
+}
+
+.matrix-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+
+.matrix-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.matrix-tag-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  background: var(--bg-slate);
+  border: 1px solid #2d3748;
+  color: var(--text-drafting);
+}
+
+/* ==========================================================================
+   Pricing Comparison Table (3 Structural Columns, Concrete Rigidity)
+   ========================================================================== */
+
+.arch-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  align-items: stretch;
+}
+
+.arch-pricing-card {
+  background: var(--bg-concrete);
+  border: 2px solid #2d3748;
+  box-shadow: var(--shadow-hard-blue);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.arch-pricing-card.featured {
+  border: 2px solid #ffffff;
+  box-shadow: var(--shadow-large-crimson);
+  background: var(--bg-modular);
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+.pricing-beam-flag {
+  position: absolute;
+  top: -16px;
+  left: 28px;
+  padding: 4px 16px;
+  background: var(--signal-crimson);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  border: 2px solid #ffffff;
+  text-transform: uppercase;
+}
+
+.plan-tier-name {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-pure);
+  margin-bottom: 6px;
+}
+
+.plan-tier-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  min-height: 38px;
+}
+
+.plan-price-row {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #222936;
+}
+
+.price-currency {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--signal-crimson);
+}
+
+.price-val {
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--text-pure);
+  font-variant-numeric: tabular-nums;
+  margin: 0 4px;
+}
+
+.price-period {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.plan-spec-list {
+  list-style: none;
+  margin-bottom: 36px;
+  flex-grow: 1;
+}
+
+.plan-spec-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-drafting);
+  margin-bottom: 14px;
+}
+
+.spec-bullet-svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--bauhaus-blue-light);
+}
+
+.btn-pricing-action {
+  width: 100%;
+  padding: 13px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #2d3748;
+  background: var(--bg-slate);
+  color: var(--text-drafting);
+  box-shadow: 4px 4px 0px #2d3748;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-pricing-action:hover,
+.arch-pricing-card.featured .btn-pricing-action {
+  background: var(--bauhaus-blue);
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 5px 5px 0px var(--signal-crimson);
+}
+
+/* ==========================================================================
+   User Testimonials & FAQ Sections
+   ========================================================================== */
+
+.arch-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.arch-review-card {
+  background: var(--bg-concrete);
+  border: 2px solid #2d3748;
+  box-shadow: 5px 5px 0px #1e293b;
+  padding: 28px;
+  position: relative;
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  color: var(--signal-crimson);
+  margin-bottom: 16px;
+}
+
+.review-stars svg {
+  width: 16px;
+  height: 16px;
+}
+
+.review-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.review-user-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 2px solid #222936;
+}
+
+.user-avatar-block {
+  width: 38px;
+  height: 38px;
+  background: var(--bauhaus-blue);
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.user-info-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-pure);
+}
+
+.user-info-role {
+  font-size: 12px;
+  color: var(--text-monolith);
+}
+
+/* FAQ Accordion Grid */
+.arch-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.arch-faq-item {
+  background: var(--bg-concrete);
+  border: 2px solid #2d3748;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.arch-faq-item:hover {
+  border-color: var(--bauhaus-blue);
+  box-shadow: 4px 4px 0px var(--bauhaus-blue);
+}
+
+.faq-q {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-pure);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq-q-tag {
+  color: var(--signal-crimson);
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.faq-a {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Article Hub & Detail Styling (Aliases for Backward Compatibility)
+   ========================================================================== */
+
+.hub-hero, .briefings-hero {
+  padding: 80px 0 50px;
+  border-bottom: 3px solid #222936;
+  background: var(--bg-concrete);
+}
+
+.hub-hero h1, .briefings-hero h1 {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--text-pure);
+  margin-bottom: 14px;
+}
+
+.hub-hero p, .briefings-hero p {
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.articles-grid, .briefings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  padding: 60px 0 90px;
+}
+
+.article-summary-card, .briefing-card {
+  background: var(--bg-concrete);
+  border: 2px solid #2d3748;
+  box-shadow: 5px 5px 0px #1e293b;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.article-summary-card:hover, .briefing-card:hover {
+  transform: translate(-3px, -3px);
+  border-color: var(--bauhaus-blue);
+  box-shadow: 8px 8px 0px var(--bauhaus-blue);
+}
+
+.article-badge, .briefing-badge, .briefing-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--signal-crimson);
+  padding: 3px 10px;
+  border: 1px solid #ffffff;
+  margin-bottom: 14px;
+}
+
+.article-summary-card h2, .briefing-card h2 {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.article-summary-card h2 a, .briefing-card h2 a {
+  color: var(--text-pure);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.article-summary-card h2 a:hover, .briefing-card h2 a:hover {
+  color: var(--bauhaus-blue-light);
+}
+
+.article-excerpt, .briefing-excerpt, .briefing-summary {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.article-read-more, .briefing-read-more, .briefing-link {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--signal-crimson);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.article-read-more:hover, .briefing-read-more:hover, .briefing-link:hover {
+  color: #ff5c70;
+}
+
+/* Article Detail */
+.article-detail-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+.article-header {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 3px solid #222936;
+}
+
+.article-header h1 {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--text-pure);
+  line-height: 1.3;
+  margin: 16px 0;
+}
+
+.article-meta-row {
+  display: flex;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-monolith);
+}
+
+.content-body {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #cbd5e1;
+}
+
+.content-body p {
+  margin-bottom: 22px;
+}
+
+.content-body h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-pure);
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #222936;
+}
+
+.content-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--bauhaus-blue-light);
+  margin: 28px 0 12px;
+}
+
+/* Critical: In-content Link Color & Visited Color Override */
+.content-body a {
+  color: var(--signal-crimson) !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.content-body a:visited {
+  color: var(--signal-crimson) !important;
+}
+
+.content-body a:hover {
+  color: #ff5c70 !important;
+  text-shadow: 0 0 8px rgba(255, 51, 75, 0.4);
+}
+
+/* ==========================================================================
+   Footer (Chinese Only, Full Sitemap & About Us)
+   ========================================================================== */
+
+.bauhaus-footer, footer {
+  background: #090c10;
+  border-top: 3px solid #222936;
+  padding: 70px 0 30px;
+  position: relative;
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.footer-brand-col p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-top: 16px;
+  max-width: 320px;
+}
+
+.footer-col-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-pure);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-left: 3px solid var(--bauhaus-blue);
+  padding-left: 8px;
+}
+
+.footer-link-list {
+  list-style: none;
+}
+
+.footer-link-list li {
+  margin-bottom: 10px;
+}
+
+.footer-link-list a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.15s ease;
+}
+
+.footer-link-list a:hover {
+  color: var(--bauhaus-blue-light);
+}
+
+.footer-bottom-bar {
+  padding-top: 24px;
+  border-top: 2px solid #1e242c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-monolith);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-legal-links a {
+  color: var(--text-monolith);
+  text-decoration: none;
+}
+
+.footer-legal-links a:hover {
+  color: var(--bauhaus-blue-light);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  html {
+    scroll-padding-top: 105px;
+  }
+  .bauhaus-masthead, .aero-masthead, .cockpit-hud {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  .masthead-inner, .hud-inner {
+    flex-wrap: wrap;
+    padding: 8px 16px;
+    gap: 8px 12px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .brand-link {
+    order: 1;
+    height: 32px;
+    flex-shrink: 0;
+  }
+  .bauhaus-logo-svg, .aero-logo-svg {
+    height: 28px;
+    width: auto;
+    max-width: 145px;
+  }
+  .header-action {
+    order: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .btn-bauhaus-primary, .btn-aero-primary {
+    padding: 6px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .mobile-menu-btn {
+    display: flex;
+  }
+  .bauhaus-nav-menu, .aero-nav-menu {
+    order: 3;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 4px 2px 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    box-sizing: border-box;
+  }
+  .bauhaus-nav-menu::-webkit-scrollbar,
+  .aero-nav-menu::-webkit-scrollbar {
+    display: none;
+    height: 0;
+  }
+  .bauhaus-nav-menu a, .aero-nav-menu a {
+    font-size: 12px;
+    padding: 4px 10px;
+    background: rgba(37, 99, 235, 0.12);
+    border: 1px solid var(--bauhaus-blue);
+    border-radius: 0;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .bauhaus-nav-menu a.active, .aero-nav-menu a.active {
+    background: var(--bauhaus-blue);
+    border-color: #ffffff;
+    color: #ffffff;
+    box-shadow: 2px 2px 0px var(--signal-crimson);
+  }
+  .bauhaus-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .arch-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .arch-matrix-grid,
+  .arch-pricing-grid,
+  .arch-reviews-grid {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .arch-pricing-card.featured {
+    transform: none;
+  }
+  .footer-top-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 34px;
+  }
+  .arch-features-grid,
+  .arch-faq-grid,
+  .articles-grid,
+  .briefings-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
